@@ -138,7 +138,7 @@ The cyber careers room goes into more depth about the different careers in cyber
 
 _1. Read the above, and continue with the next room!_
 
-No answer needed
+No answer needed.
 
 ---
 
