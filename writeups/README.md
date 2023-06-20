@@ -10,7 +10,7 @@ Note that with my answers and explanations, it is recommended to look at my expl
 
 # THM Rooms - Info difficulty
 
-- Intro to Offensive Security (writeup)
+- [Intro to Offensive Security](https://tryhackme.com/room/introtooffensivesecurity) ([writeup](introtooffsec.md))
 - Linux Fundamentals Part 1 (writeup)
 - Linux Fundamentals Part 2 (writeup)
 - Linux Fundamentals Part 3 (writeup)
