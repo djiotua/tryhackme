@@ -82,6 +82,8 @@ In the command above, _-u_ is used to state the website we're scanning, _-w_ tak
 
 You will see that GoBuster scans the website with each word in the list, finding pages that exist on the site. GoBuster will have told you the pages it found in the list of page/directory names (indicated by Status: 200).
 
+![73103edfb588a260fb9d336094ad5253](https://github.com/djiotua/tryhackme/assets/134016731/4d3b7366-3b92-4edb-9f50-8e2d796b31b7)
+
 ### Step 3: Hack the bank
 
 You should have found a secret bank transfer page that allows you to transfer money between accounts at the bank (_/bank-transfer_). Type the hidden page into the FakeBank website on the machine.
