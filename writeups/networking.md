@@ -24,3 +24,4 @@ Networks are integrated into our everyday life. Be it gathering data for the wea
 Take the diagram below as an example, Alice, Bob and Jim have formed their network! We'll come onto this a bit later on.
 
 ![d1v1](https://github.com/djiotua/tryhackme/assets/134016731/6fed8f4f-7fd5-4927-b702-ee8e6f7a76ee)
+
