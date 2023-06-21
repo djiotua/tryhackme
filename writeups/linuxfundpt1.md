@@ -69,9 +69,13 @@ However, to get started, simply press the green "_Start Machine_" button on the 
 
 Once deployed, a card will appear at the top of the room.
 
+![deploy-card](https://github.com/djiotua/tryhackme/assets/134016731/ef9d2295-d2f3-4bda-8c97-942ccf87791a)
+
 This contains all of the information for the machine deployed in the room including the IP address and expiry timer - along with buttons to manage the machine. Remember to "_Terminate_" a machine once you are done with the room. More information on this can be found in the [tutorial](https://tryhackme.com/room/tutorial) room.
 
 For now, press "_Start Machine_" where you will be able to interact with your own Linux machine within your browser whilst following along with this room.
+
+![split-screen](https://github.com/djiotua/tryhackme/assets/134016731/08a9d55f-b691-4e70-a7f2-412923bb44a3)
 
 ---
 
