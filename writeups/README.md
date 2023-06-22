@@ -15,7 +15,7 @@ Note that with my answers and explanations, it is recommended to look at my expl
 - Linux Fundamentals Part 2 (writeup)
 - Linux Fundamentals Part 3 (writeup)
 - [What is Networking?](https://tryhackme.com/room/whatisnetworking) ([writeup](networking.md))
-- Pentesting Fundamentals? (writeup)
+- [Pentesting Fundamentals?](https://tryhackme.com/room/pentestingfundamentals) ([writeup](pentestfund.md)
 - Principles of Security (writeup)
 - Burp Suite: The Basics (writeup)
 - Intro to LAN (writeup)
