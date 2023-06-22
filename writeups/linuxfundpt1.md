@@ -523,7 +523,7 @@ _1. If we wanted to run a command in the background, what operator would we want
 
 _2. If I wanted to replace the contents of a file named "passwords" with the word "password123", what would my command be?_
 
-  Hint: echo [content] > [filename]
+  Hint: _echo [content] > [filename]_
 
   <details>
     <summary>Answer</summary>
@@ -545,7 +545,7 @@ _2. If I wanted to replace the contents of a file named "passwords" with the wor
 
 _3. Now if I wanted to add "tryhackme" to this file named "passwords" but also keep "passwords123", what would my command be?_
 
-  Hint: echo [content] >> [filename]
+  Hint: _echo [content] >> [filename]_
 
   <details>
     <summary>Answer</summary>
