@@ -310,3 +310,254 @@ _1. How would you create the file named "newnote"?_
   </details>
   
 _2. On the deployable machine, what is the file type of "unknown1" in "tryhackme's" home directory?_
+
+  <details>
+    <summary>Answer</summary>
+
+    ASCII text
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    I used the "file" command to find out the type file, on "unknown1" in this case. I also used the "ls" command to verify if there is "unknown1" in the current directory.
+
+  ```bash
+  tryhackme@linux2:~$ ls
+  important  myfile  myfolder  newnote  unknown1
+  tryhackme@linux2:~$ file unknown1
+  unknown1: ASCII text
+  ```
+  </details>
+
+_3. How would we move the file "myfile" to the directory "myfolder"?_
+
+  <details>
+    <summary>Answer</summary>
+
+    mv myfile myfolder
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    I used "mv" to simply move a file into a folder in this instance.
+
+  ```bash
+  tryhackme@linux2:~$ mv myfile myfolder
+  tryhackme@linux2:~$ ls myfolder
+  myfile
+  ```
+  </details>
+
+_4. What are the contents of this file?_
+
+  <details>
+    <summary>Answer</summary>
+
+    THM{FILESYSTEM}
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    Since I have done question 3, I had to move to the "myfolder" directory, then use "cat" to open "myfile".
+
+  ```bash
+  tryhackme@linux2:~$ cd myfolder
+  tryhackme@linux2:~$ cat myfile
+  THM{FILESYSTEM}
+  ```
+  </details>
+
+_5. Continue to apply your knowledge and practice the commands from this task._
+
+No answer needed.
+
+---
+
+# Task 5 - Permissions 101
+
+As you would have already found out by now, certain users cannot access certain files or folders. We've previously explored some commands that can be used to determine what access we have and where it leads us. 
+
+In our previous tasks, we learned how to extend the use of commands through flags and switches. Take, for example, the _ls_ command, which lists the contents of the current directory. When using the _-l_ switch, we can see ten columns such as in the screenshot below. However, we're only interested in the first three columns:
+
+  ```bash
+  tryhackme@linux2:~$ ls -lh
+  -rw-r--r-- 1 cmnatic cmnatic 0 Feb 19 10:37 file1
+  -rw-r--r-- 8 cmnatic cmnatic 0 Feb 19 10:37 file2
+  ```
+
+Although intimidating, these three columns are very important in determining certain characteristics of a file or folder and whether or not we have access to it. A file or folder can have a couple of characteristics that determine both what actions are allowed and what user or group has the ability to perform the given action -- such as the following:
+
+- Read
+- Write
+- Execute
+  
+_Using su to switch to user2_
+
+  ```bash
+  tryhackme@linux2:~$ su user2
+  Password:
+  user2@linux2:/home/tryhackme$
+  ```
+
+Let's use the "_cmnatic.pem_" file in our initial screenshot at the top of this task. It has the "-" indicator highlighting that it is a file and then "rw" followed after. This means that only the owner of the file can read and write to this "cmnatic.pem" file but cannot execute it.
+
+## Briefly: The Differences Between Users & Groups
+
+We briefly explored this in Linux fundamentals part 1 (namely, the differences between a regular user and a system user). The great thing about Linux is that permissions can be so granular, that whilst a user technically owns a file, if the permissions have been set, then a group of users can also have either the same or a different set of permissions to the exact same file without affecting the file owner itself.
+
+Let's put this into a real-world context; the system user that runs a web server must have permissions to read and write files for an effective web application. However, companies such as web hosting companies will have to want to allow their customers to upload their own files for their website without being the webserver system user -- compromising the security of every other customer. 
+
+We'll learn the commands necessary to switch between users below.
+
+## Switching Between Users
+
+Switching between users on a Linux install is easy work thanks to the _su_ command. Unless you are the root user (or using root permissions through sudo), then you are required to know two things to facilitate this transition of user accounts:
+
+- The user we wish to switch to
+- The user's password
+  
+The _su_ command takes a couple of switches that may be of relevance to you. For example, executing a command once you log in or specifying a specific shell to use. I encourage you to read the man page for _su_ to find out more. However, I will cover the _-l_ or _--login_ switch.
+
+Simply, by providing the _-l_ switch to _su_, we start a shell that is much more similar to the actual user logging into the system - we inherit a lot more properties of the new user, i.e., environment variables and the likes.
+
+  ```bash
+  tryhackme@linux2:~$ su user2
+  Password:
+  user2@linux2:/home/tryhackme$
+  ```
+
+For example, when using _su_ to switch to "user2", our new session drops us into our previous user's home directory. 
+
+  ```bash
+  tryhackme@linux2:~$ su -l user2
+  Password:
+  user2@linux2:~$ pwd
+  user2@:/home/user2$
+  ```
+
+Where now, after using _-l_, our new session has dropped us into the home directory of "user" automatically. 
+
+---
+
+_1. On the deployable machine, who is the owner of "important"?_
+
+  <details>
+    <summary>Answer</summary>
+
+    user2
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    The most suitable option would be to use the "ls" command, but adding the "-l" flag, so as to better understand who has permissions to which and who owns certain files or folders. You can also add the "-h" flag if you want to have a slightly better understanding (human readable, remember?).
+
+  ```bash
+  tryhackme@linux2:~$ ls -l
+  total 12
+  -rw-r--r-- 1 user2     user2       14 May  5  2021 important
+  drwxr-xr-x 2 tryhackme tryhackme 4096 Jun 23 09:54 myfolder
+  -rw-r--r-- 1 tryhackme tryhackme   17 May  4  2021 unknown1
+  ```
+  </details>
+
+_2. What would the command be to switch to the user "user2"?_
+
+  <details>
+    <summary>Answer</summary>
+
+    su user2
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    I used the "su" command, to switch between users of course. Unfortunately for now, you cannot apply this command into the AttackBox, as there is no password provided.
+  </details>
+
+_3. Now switch to this user "user2" using the password "user2"._
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    Now that the password has been provided, we can be able to switch to user2.
+
+  ```bash
+  tryhackme@linux2:~$ su user2
+  Password: 
+  user2@linux2:/home/tryhackme$
+  ```
+  </details>
+
+_4. Output the contents of "important", what is the flag?_
+
+  <details>
+    <summary>Answer</summary>
+
+    THM{SU_USER2}
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    Assuming you are under "user2", use "ls" to find "important", then "cat" the file.
+
+  ```bash
+  user2@linux2:/home/tryhackme$ ls
+  important  myfolder  unknown1
+  user2@linux2:/home/tryhackme$ cat important
+  THM{SU_USER2}
+  ```
+  </details>
+
+# Task 6 - Common Directories
+
+### /etc
+
+This root directory is one of the most important root directories on your system. The etc folder (short for etcetera) is a commonplace location to store system files that are used by your operating system. 
+
+For example, the sudoers file highlighted in the screenshot below contains a list of the users & groups that have permission to run sudo or a set of commands as the root user.
+
+Also highlighted below are the "_passwd_" and "_shadow_" files. These two files are special for Linux as they show how your system stores the passwords for each user in encrypted formatting called _sha512_.
+
+  ```bash
+  tryhackme@linux2:/etc$ ls
+  shadow passwd sudoers sudoers.d
+  ```
+
+### /var
+
+The "/var" directory, with "var" being short for variable data,  is one of the main root folders found on a Linux install. This folder stores data that is frequently accessed or written by services or applications running on the system. For example, log files from running services and applications are written here (_/var/log_), or other data that is not necessarily associated with a specific user (i.e., databases and the like).
+
+  ```bash
+  tryhackme@linux2:/var$ ls
+  backups log opt tmp
+  ```
+
+### /root
+
+Unlike the /home directory, the _/root_ folder is actually the home for the "root" system user. There isn't anything more to this folder other than just understanding that this is the home directory for the "root" user. But, it is worth a mention as the logical presumption is that this user would have their data in a directory such as _"/home/root"_ by default. 
+
+  ```bash
+  root@linux2:~# ls
+  myfile myfolder passwords.xlsx
+  ```
+
+### /tmp
+
+This is a unique root directory found on a Linux install. Short for "_temporary_", the /tmp directory is volatile and is used to store data that is only needed to be accessed once or twice. Similar to the memory on your computer, once the computer is restarted, the contents of this folder are cleared out.
+
+What's useful for us in pentesting is that any user can write to this folder by default. Meaning once we have access to a machine, it serves as a good place to store things like our enumeration scripts.
+
+  ```bash
+  root@linux2:/tmp# ls
+  todelete trash.txt rubbish.bin
+  ```
+
+---
+
