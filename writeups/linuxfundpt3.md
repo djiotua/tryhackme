@@ -233,4 +233,157 @@ _1. Ensure you are connected to the deployed instance (10.10.158.137)._
 
 No answer needed.
 
-2. 
+_2. Now, use Python 3's "HTTPServer" module to start a web server in the home directory of the "tryhackme" user on the deployed instance._
+
+  Hint: _python3 -m http.server_
+
+_3. Download the file http://10.10.158.137:8000/.flag.txt onto the TryHackMe AttackBox. What are the contents?_
+
+  Hint: Use wget! It's a hidden file so don't forget the period in .flag.txt when downloading and catting.
+  
+  <details>
+    <summary>Answer</summary>
+
+    THM{WGET_WEBSERVER}
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    I used question 2, as well as the hint, to start the process.
+
+  ```bash
+  tryhackme@linux3:~$ python3 -m http.server
+  Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+  ```
+
+    I then opened another terminal using "tmux", which, in my case, created horizontally-split screen, then used "wget" on the new terminal to download the flag in question.
+
+  ```bash
+  tryhackme@linux3:~$ wget http://MACHINE_IP:8000/.flag.txt
+  --2023-06-24 09:59:43--  http://MACHINE_IP:8000/.flag.txt
+  Connecting to MACHINE_IP:8000... connected.
+  HTTP request sent, awaiting response... 200 OK
+  Length: 20 [text/plain]
+  Saving to: '.flag.txt.1'
+
+  .flag.txt.1         100%[===================>]      20  --.-KB/s    in 0s      
+
+  2023-06-24 09:59:43 (260 KB/s) - '.flag.txt.1' saved [20/20]
+  ```
+
+    As I downloaded the flag, I immediately noticed this line from the first terminal screen (with python3):
+
+  ```bash
+  MACHINE_IP - - [24/Jun/2023 09:59:43] "GET /.flag.txt HTTP/1.1" 200 -
+  ```
+
+    From the "wget" terminal, I used "cat .flag.txt" to see the contents (and the flag!), since it was saved as ".flag.txt".
+
+  ```bash
+  tryhackme@linux3:~$ cat .flag.txt
+  THM{WGET_WEBSERVER}
+  ```
+  </details>
+
+_4. Create and download files to further apply your learning -- see how you can read the documentation on Python3's "HTTPServer" module. Use Ctrl + C to stop the Python3 HTTPServer module once you are finished._
+
+  Hint: _https://docs.python.org/3/library/http.server.html_
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    Once I used "Ctrl + C" to stop the Python3 module, the terminal showed as:
+
+  ```bash
+  MACHINE_IP - - [24/Jun/2023 09:59:43] "GET /.flag.txt HTTP/1.1" 200 -
+  ^C
+  Keyboard interrupt received, exiting.
+  tryhackme@linux3:~$
+  ```
+  </details>
+
+  ---
+
+# Task 5 - Processes 101
+
+Processes are the programs that are running on your machine. They are managed by the kernel, where each process will have an ID associated with it, also known as its PID. The PID increments for the order in which the process starts. I.e. the 60th process will have a PID of 60.
+
+## Viewing Processes
+
+We can use the friendly _ps_ command to provide a list of the running processes as our user's session and some additional information such as its status code, the session that is running it, how much usage time of the CPU it is using, and the name of the actual program or command that is being executed:
+
+![ps1](https://github.com/djiotua/tryhackme/assets/134016731/6c0ad6e0-8c0b-4526-9f2f-d21534a23c1e)
+
+Note how in the screenshot above, the second process ps has a PID of 204, and then in the command below it, this is then incremented to 205.
+
+To see the processes run by other users and those that don't run from a session (i.e. system processes), we need to provide aux to the ps command like so: _ps aux_.
+
+![ps2](https://github.com/djiotua/tryhackme/assets/134016731/73f9cf1b-b0d4-43d4-bc4a-1d49092437e5)
+
+Note we can see a total of 5 processes -- note how we now have "_root_" and "_cmnatic_".
+
+Another very useful command is the top command; top gives you real-time statistics about the processes running on your system instead of a one-time view. These statistics will refresh every 10 seconds, but will also refresh when you use the arrow keys to browse the various rows. Another great command to gain insight into your system is via the _top_ command.
+
+![top1](https://github.com/djiotua/tryhackme/assets/134016731/770c16eb-9643-477d-a894-89fe3b3b2290)
+
+## Managing Processes
+
+You can send signals that terminate processes; there are a variety of types of signals that correlate to exactly how "cleanly" the process is dealt with by the kernel. To kill a command, we can use the appropriately named _kill_ command and the associated PID that we wish to kill. i.e., to kill PID 1337, we'd use _kill 1337_.
+
+Below are some of the signals that we can send to a process when it is killed:
+
+- SIGTERM - Kill the process, but allow it to do some cleanup tasks beforehand
+- SIGKILL - Kill the process - doesn't do any cleanup after the fact
+- SIGSTOP - Stop/suspend a process
+
+## How do Processes Start?
+
+Let's start off by talking about namespaces. The Operating System (OS) uses namespaces to ultimately split up the resources available on the computer to (such as CPU, RAM and priority) processes. Think of it as splitting your computer up into slices -- similar to a cake. Processes within that slice will have access to a certain amount of computing power, however, it will be a small portion of what is actually available to every process overall.
+
+Namespaces are great for security as it is a way of isolating processes from another -- only those that are in the same namespace will be able to see each other.
+
+We previously talked about how PID works, and this is where it comes into play. The process with an ID of 0 is a process that is started when the system boots. This process is the system's init on Ubuntu, such as _systemd_, which is used to provide a way of managing a user's processes and sits in between the operating system and the user. 
+
+For example, once a system boots and it initialises, systemd is one of the first processes that are started. Any program or piece of software that we want to start will start as what's known as a child process of systemd. This means that it is controlled by systemd, but will run as its own process (although sharing the resources from systemd) to make it easier for us to identify and the likes.
+
+![process1](https://github.com/djiotua/tryhackme/assets/134016731/46e1ce8b-15c6-4232-8b5b-0da8fd8a3e72)
+
+## Getting Processes/Services to Start on Boot
+
+Some applications can be started on the boot of the system that we own. For example, web servers, database servers or file transfer servers. This software is often critical and is often told to start during the boot-up of the system by administrators.
+
+In this example, we're going to be telling the apache web server to be starting apache manually and then telling the system to launch apache2 on boot.
+
+Enter the use of _systemctl_ -- this command allows us to interact with the systemd process/daemon. Continuing on with our example, systemctl is an easy to use command that takes the following formatting: _systemctl [option] [service]_
+
+For example, to tell apache to start up, we'll use _systemctl start apache2_. Seems simple enough, right? Same with if we wanted to stop apache, we'd just replace the _[option]_ with stop (instead of start like we provided)
+
+We can do four options with _systemctl_:
+
+- Start
+- Stop
+- Enable
+- Disable
+
+## An Introduction to Backgrounding and Foregrounding in Linux
+
+Processes can run in two states: In the background and in the foreground. For example, commands that you run in your terminal such as "echo" or things of that sort will run in the foreground of your terminal as it is the only command provided that hasn't been told to run in the background. "Echo" is a great example as the output of echo will return to you in the foreground, but wouldn't in the background - take the screenshot below, for example.
+
+![bg1](https://github.com/djiotua/tryhackme/assets/134016731/f09e5258-d7e4-4fc4-8253-5d552bdc8a88)
+
+Here we're running _echo "Hi THM"_, where we expect the output to be returned to us like it is at the start. But after adding the _&_ operator to the command, we're instead just given the ID of the echo process rather than the actual output -- as it is running in the background.
+
+This is great for commands such as copying files because it means that we can run the command in the background and continue on with whatever further commands we wish to execute (without having to wait for the file copy to finish first)
+
+We can do the exact same when executing things like scripts -- rather than relying on the & operator, we can use _Ctrl + Z_ on our keyboard to background a process. It is also an effective way of "pausing" the execution of a script or command like in the example below.
+
+![bg2](https://github.com/djiotua/tryhackme/assets/134016731/e7f87dab-5b00-4f28-94ef-c190e20c96eb)
+
+This script will keep on repeating "This will keep on looping until I stop!" until I stop or suspend the process. By using _Ctrl + Z_ (as indicated by T^Z). Now our terminal is no longer filled up with messages -- until we foreground it, which we will discuss below.
+
+### Foregrounding a process
+
+Now that we have a process running in the background, for example, our script "background.sh" which can be confirmed by using the _ps aux_ command, we can back-pedal and bring this process back to the foreground to interact with.
