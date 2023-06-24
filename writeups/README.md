@@ -13,7 +13,7 @@ Note that with my answers and explanations, it is recommended to look at my expl
 - [Intro to Offensive Security](https://tryhackme.com/room/introtooffensivesecurity) ([writeup](introtooffsec.md))
 - [Linux Fundamentals Part 1](https://tryhackme.com/room/linuxfundamentalspart1) ([writeup](linuxfundpt1.md))
 - [Linux Fundamentals Part 2](https://tryhackme.com/room/linuxfundamentalspart2) ([writeup](linuxfundpt2.md))
-- Linux Fundamentals Part 3 (writeup)
+- [Linux Fundamentals Part 3](https://tryhackme.com/room/linuxfundamentalspart3) ([writeup](linuxfundpt3.md))
 - [What is Networking?](https://tryhackme.com/room/whatisnetworking) ([writeup](networking.md))
 - [Pentesting Fundamentals?](https://tryhackme.com/room/pentestingfundamentals) ([writeup](pentestfund.md))
 - Principles of Security (writeup)
