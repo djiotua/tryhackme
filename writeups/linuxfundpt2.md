@@ -561,3 +561,104 @@ What's useful for us in pentesting is that any user can write to this folder by 
 
 ---
 
+_1. Read me!_
+
+No answer needed.
+
+_2. What is the directory path that would we expect logs to be stored in?_
+
+  <details>
+    <summary>Answer</summary>
+
+    /var/log
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    "/var" holds the "log" directory. For the demonstration, I used "cd .." to navigate to the "/var/log" directory, and "ls" to look for contents, and verify if I am the right location.
+    
+  ```bash
+  tryhackme@linux2:~$ cd ..
+  tryhackme@linux2:/home$ ls
+  tryhackme  ubuntu  user2
+  tryhackme@linux2:/home$ cd ..
+  tryhackme@linux2:/$ ls
+  bin  ...  var
+  tryhackme@linux2:/$ cd var/log
+  tryhackme@linux2:/var/log$
+  ```
+  </details>
+
+_3. What root directory is similar to how RAM on a computer works?_
+
+  Hint: The contents of this root directory do not persist after reboot.
+
+  <details>
+    <summary>Answer</summary>
+
+    /tmp
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    "/tmp" simply holds temporary files, which disappear once the machine is restarted. You can be able to switch between root directories, wherever you are.
+
+  ```bash
+  tryhackme@linux2:/var/log$ cd /tmp
+  tryhackme@linux2:/tmp$
+  ```
+  </details>
+
+_4. Name the home directory of the root user._
+
+  <details>
+    <summary>Answer</summary>
+
+    /root
+  </details>
+
+_5. Now apply your learning and navigate through these directories on the deployed Linux machine._
+
+No answer needed.
+
+---
+
+# Task 7 - Conclusions and Summaries
+
+Nice work! This room was quite theory-heavy and covered quite a range of the fundamentals in getting you familiar with Linux. To quickly recap, this room taught you:
+
+- How to connect to a Linux machine remotely using SSH
+- Advancing your use of commands by providing flags, switches and where you can go to learn about these for each command (man pages)
+- Some more commands that you'll frequently be using to interact with the filesystem and its contents
+- A brief introduction to file permissions & switching users
+- A summary paragraph of the important root directories on a Ubuntu Linux install and how we may be able to use the data stored within these.
+  
+I encourage you to go through this room again once or twice to gain some familiarity with the concepts. After all, practice makes perfect!
+
+---
+
+_1. Proceed to the next task to continue your learning._
+
+No answer needed.
+
+---
+
+# Task 8 - Linux Fundamentals Part 3
+
+Visit part three of the Linux fundamentals series here! [https://tryhackme.com/room/linuxfundamentalspart3](https://tryhackme.com/room/linuxfundamentalspart3)
+
+---
+
+_1. Terminate the machine from task 2!_
+
+No answer needed.
+
+_2. Join Linux Fundamentals Part 3!_
+
+No answer needed.
+
+---
+
+END OF ROOM
