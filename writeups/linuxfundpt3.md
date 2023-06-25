@@ -387,3 +387,19 @@ This script will keep on repeating "This will keep on looping until I stop!" unt
 ### Foregrounding a process
 
 Now that we have a process running in the background, for example, our script "background.sh" which can be confirmed by using the _ps aux_ command, we can back-pedal and bring this process back to the foreground to interact with.
+
+![bg3](https://github.com/djiotua/tryhackme/assets/134016731/6b45c4f0-ac2b-45a2-873a-de62dc86aa14)
+
+With our process backgrounded using either _Ctrl + Z_ or the _&_ operator, we can use _fg_ to bring this back to focus like below, where we can see the _fg_ command is being used to bring the background process back into use on the terminal, where the output of the script is now returned to us.
+
+![bg4](https://github.com/djiotua/tryhackme/assets/134016731/b7f34ebc-6a24-456d-a899-d7769dde498a)
+
+![bg5](https://github.com/djiotua/tryhackme/assets/134016731/4974876a-a364-4340-a0c9-6f5cd87c5b17)
+
+---
+
+_1. Read me!_
+
+No answer needed.
+
+_2. If we were to launch a process where the previous ID was "300", what would the ID of this new process be?_
