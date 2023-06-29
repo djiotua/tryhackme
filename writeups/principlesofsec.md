@@ -74,4 +74,247 @@ _1. What element of the CIA triad ensures that data cannot be altered by unautho
     Integrity
   </details>
 
-  
+_2. What element of the CIA triad ensures that data is available?_
+
+  <details>
+    <summary>Answer</summary>
+
+    Availability
+  </details>
+
+_3. What element of the CIA triad ensures that data is only accessed by authorised people?_
+
+  <details>
+    <summary>Answer</summary>
+
+    Confidentiality
+  </details>
+
+---
+
+# Task 3 - Principles of Privileges
+
+It is vital to administrate and correctly define the various levels of access to an information technology system individuals require. 
+
+The levels of access given to individuals are determined on two primary factors:
+
+- The individual's role/function within the organisation
+- The sensitivity of the information being stored on the system
+
+Two key concepts are used to assign and manage the access rights of individuals, two key concepts are used: _Privileged Identity Management_ (_PIM_) and _Privileged Access Management_ (or _PAM_ for short).
+
+Initially, these two concepts can seem to overlap; however, they are different from one another. PIM is used to translate a user's role within an organisation into an access role on a system. Whereas PAM is the management of the privileges a system's access role has, amongst other things.
+
+What is essential when discussing privilege and access controls is the principle of least privilege. Simply, users should be given the minimum amount of privileges, and only those that are absolutely necessary for them to perform their duties. Other people should be able to trust what people write to.
+
+As we previously mentioned, PAM incorporates more than assigning access. It also encompasses enforcing security policies such as password management, auditing policies and reducing the attack surface a system faces.
+
+---
+
+_1. What does the acronym "PIM" stand for?_
+
+  <details>
+    <summary>Answer</summary>
+
+    Privileged Identity Management
+  </details>
+
+_2. What does the acronym "PAM" stand for?_
+
+  <details>
+    <summary>Answer</summary>
+
+    Privileged Access Management
+  </details>
+
+_3. If you wanted to manage the privileges a system access role had, what methodology would you use?_
+
+  Hint: I'm looking for the short acronym here (PIM/PAM).
+
+  <details>
+    <summary>Answer</summary>
+
+    PAM
+  </details>
+
+_4. If you wanted to create a system role that is based on a users role/responsibilities with an organisation, what methodology is this?_
+
+  Hint: Same as question 3.
+
+  <details>
+    <summary>Answer</summary>
+
+    PIM
+  </details>
+
+---
+
+# Task 4 - Security Models Continued
+
+Before discussing security models further, let's recall the three elements of the CIA triad: Confidentiality, Integrity and Availability. We've previously outlined what these elements are and their importance. However, there is a formal way of achieving this.
+
+According to a security model, any system or piece of technology storing information is called an information system, which is how we will reference systems and devices in this task.
+
+Let's explore some popular and effective security models used to achieve the three elements of the CIA triad.
+
+## The Bell-La Padula Model
+
+The Bell-La Padula Model is used to achieve confidentiality. This model has a few assumptions, such as an organisation's hierarchical structure it is used in, where everyone's responsibilities/roles are well-defined.
+
+The model works by granting access to pieces of data (called _objects_) on a strictly need to know basis. This model uses the rule "no write down, no read up".
+
+| Advantages | Disadvantages |
+| --- | --- |
+| Policies in this model can be replicated to real-life organisations hierarchies (and vice versa). | Even though a user may not have access to an object, they will know about its existence -- so it's not confidential in that aspect. |
+| Simple to implement and understand, and has been proven to be successful. | The model relies on a large amount of trust within the organisation. |
+
+![0e6e5d9d80785fc287b4a67e1453b295](https://github.com/djiotua/tryhackme/assets/134016731/407fe0ef-cc18-4843-83e4-487de2ea1c4c)
+
+The Bell LaPadula Model is popular within organisations such as governmental and military. This is because members of the organisations are presumed to have already gone through a process called vetting. Vetting is a screening process where applicant's backgrounds are examined to establish the risk they pose to the organisation. Therefore, applicants who are successfully vetted are assumed to be trustworthy - which is where this model fits in.
+
+## Biba Model
+
+The Biba model is arguably the equivalent of the Bell-La Padula model but for the integrity of the CIA triad.
+
+This model applies the rule to objects (data) and subjects (users) that can be summarised as "no write up, no read down". This rule means that subjects can create or write content to objects at or below their level but _can only_ read the contents of objects above the subject's level.
+
+Let's compare some advantages and disadvantages of this model in the table below.
+
+| Advantages | Disadvantages |
+| --- | --- |
+| This model is simple to implement. | There will be many levels of access and objects. Things can be easily overlooked when applying security controls. |
+| Resolves the limitations of the Bell-La Padula model by addressing both confidentiality and data integrity. | Often results in delays within a business. For example, a doctor would not be able to read the notes made by a nurse in a hospital with this model. |
+
+![895ba351ef24ef6495d290222e49470e](https://github.com/djiotua/tryhackme/assets/134016731/2a7ec34a-14b7-4ab8-a54b-17903e1dd69b)
+
+The Biba model is used in organisations or situations where integrity is more important than confidentiality. For example, in software development, developers may only have access to the code that is necessary for their job. They may not need access to critical pieces of information such as databases, etc.
+
+---
+
+_1. What is the name of the model that uses the rule "can't read up, can read down"?_
+
+  Hint: Formatting - The x Model. Look at the direction of the arrows and the text next to them to understand what directions can read up/down depending upon the model.
+
+  <details>
+    <summary>Answer</summary>
+
+    The Bell-LaPadula Model
+  </details>
+
+_2. What is the name of the model that uses the rule "can read up, can't read down"?_
+
+  Hint: Same as question 1.
+
+  <details>
+    <summary>Answer</summary>
+    
+    The Biba Model
+  </details>
+
+_3. If you were a military, what security model would you use?_
+
+  Hint: Formatting: The x Model
+
+  <details>
+    <summary>Answer</summary>
+
+    The Bell-LaPadula Model
+  </details>
+
+_4. If you were a software developer, what security model would the company perhaps use?_
+
+  Hint: Same as question 3.
+
+  <details>
+    <summary>Answer</summary>
+    
+    The Biba Model
+  </details>
+
+---
+
+# Task 5 - Threat Modelling & Incident Response
+
+Threat modelling is the process of reviewing, improving, and testing the security protocols in place in an organisation's information technology infrastructure and services.
+
+A critical stage of the threat modelling process is identifying likely threats that an application or system may face, the vulnerabilities a system or application may be vulnerable to.
+
+The threat modelling process is very similar to a risk assessment made in workplaces for employees and customers. The principles all return to:
+
+- Preparation
+- Identification
+- Mitigations
+- Review
+
+It is, however, a complex process that needs constant review and discussion with a dedicated team. An effective threat model includes:
+
+- Threat intelligence
+- Asset identification
+- Mitigation capabilities
+- Risk assessment
+
+To help with this, there are frameworks such as _STRIDE_ (_Spoofing identity, Tampering with data, Repudiation threats, Information disclosure, Denial of Service and Elevation of privileges_) and _PASTA_ (_Process for Attack Simulation and Threat Analysis_) infosec never tasted so good!. Let's detail STRIDE below. STRIDE, authored by two Microsoft security researchers in 1999 is still very relevant today. STRIDE includes six main principles, which I have detailed in the table below.
+
+| Principle | Description |
+| --- | --- |
+| Spoofing | This principle requires you to authenticate requests and users accessing a system. Spoofing involves a malicious party falsely identifying itself as another. Access keys (such as API keys) or signatures via encryption helps remediate this threat. |
+| Tampering | By providing anti-tampering measures to a system or application, you help provide integrity to the data. Data that is accessed must be kept integral and accurate. For example, shops use seals on food products. |
+| Repudiation	| This principle dictates the use of services such as logging of activity for a system or application to track. |
+| Information Disclosure | Applications or services that handle information of multiple users need to be appropriately configured to only show information relevant to the owner is shown. |
+| Denial of Service | Applications and services use up system resources, these two things should have measures in place so that abuse of the application/service won't result in bringing the whole system down. |
+| Elevation of Privilege | This is the worst-case scenario for an application or service. It means that a user was able to escalate their authorization to that of a higher level i.e. an administrator. This scenario often leads to further exploitation or information disclosure. |
+
+A breach of security is known as an incident. And despite all rigorous threat models and secure system designs, incidents do happen. Actions taken to resolve and remediate the threat are known as Incident Response (IR) and are a whole career path in cybersecurity.
+
+Incidents are classified using a rating of urgency and impact. Urgency will be determined by the type of attack faced, where the impact will be determined by the affected system and what impact that has on business operations.
+
+![ab0cc8478b0bce9a400187f559d36dd6](https://github.com/djiotua/tryhackme/assets/134016731/860c6de7-429e-4682-9e4a-14835f885648)
+
+An incident is responded to by a Computer Security Incident Response Team (CSIRT) which is prearranged group of employees with technical knowledge about the systems and/or current incident. To successfully solve an incident, these steps are often referred to as the six phases of Incident Response that takes place, listed in the table below.
+
+| Action | Description |
+| --- | --- |
+| Preparation | Do we have the resources and plans in place to deal with the security incident? |
+| Identification | Has the threat and the threat actor been correctly identified in order for us to respond to? |
+| Containment | Can the threat/security incident be contained to prevent other systems or users from being impacted? |
+| Eradication | Remove the active threat. |
+| Recovery | Perform a full review of the impacted systems to return to business as usual operations. |
+| Lessons Learned	| What can be learnt from the incident? I.e. if it was due to a phishing email, employees should be trained better to detect phishing emails. |
+
+---
+
+_1. What model outlines "Spoofing"?_
+
+  <details>
+    <summary>Answer</summary>
+    
+    STRIDE
+  </details>
+
+_2. What does the acronym "IR" stand for?_
+
+  <details>
+    <summary>Answer</summary>
+    
+    Incident Response
+  </details>
+
+_3. You are tasked with adding some measures to an application to improve the integrity of data, what STRIDE principle is this?_
+
+  <details>
+    <summary>Answer</summary>
+    
+    Tampering
+  </details>
+
+_4. An attacker has penetrated your organisation's security and stolen data. It is your task to return the organisation to business as usual. What incident response stage is this?_
+
+  <details>
+    <summary>Answer</summary>
+    
+    Recovery
+  </details>
+
+---
+
+END OF ROOM
