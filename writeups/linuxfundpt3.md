@@ -521,8 +521,95 @@ Let's use the example of backing up files. You may wish to backup "cmnatic"'s  "
   0 *12 * * * cp -R /home/cmnatic/Documents /var/backups/
   ```
 
+An interesting feature of crontabs is that these also support the wildcard or asterisk (*). If we do not wish to provide a value for that specific field, i.e. we don't care what month, day, or year it is executed -- only that it is executed every 12 hours, we simply just place an asterisk.
 
-| DOW | What day of the week to execute at |
-| CMD | The actual command that will be executed |
+This can be confusing to begin with, which is why there are some great resources such as the online "[Crontab Generator](https://crontab-generator.org/)" that allows you to use a friendly application to generate your formatting for you! As well as the site "[Cron Guru](https://crontab.guru/)"!
 
-Let's use the example of backing up files. You may wish to backup "cmnatic"'s "Documents" every 12 hours. We would use the following formatting: 
+Crontabs can be edited by using _crontab -e_, where you can select an editor (such as _Nano_) to edit your crontab.
+
+![cron2](https://github.com/djiotua/tryhackme/assets/134016731/69a34ceb-ff07-4720-8066-033440ffd429)
+
+![cron3](https://github.com/djiotua/tryhackme/assets/134016731/46991118-db7e-4bf4-86ce-91a4ec402fa3)
+
+---
+
+_1. Ensure you are connected to the deployed instance and look at the running crontabs._
+
+  Hint: Remember that we can use _crontab -e_ to edit the user's crontab file.
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    By using the "crontab -e" command, we should be able to see the output below:
+
+  ```bash
+  tryhackme@linux3:~$ crontab -e
+  ```
+
+    Only "crontab" is accepted. Ohter spellings would cause errors, assuming you have not installed the program. Once run, you are taken to the Nano text editor program.
+    
+  ```bash
+      GNU nano 4.8              /tmp/crontab.dN4JLi/crontab                         
+  
+  # To define the time you can provide concrete values for
+  # minute (m), hour (h), day of month (dom), month (mon),
+  # and day of week (dow) or use '*' in these fields (for 'any').
+   
+  # Notice that tasks will be started based on the cron's system
+  # daemon's notion of time and timezones.
+  ```
+  </details>
+
+_2. When will the crontab on the deployed instance (MACHINE_IP) run?_
+
+  Hint: Take a look at the position and the value within the appropriate column.
+
+  <details>
+    <summary>Answer</summary>
+
+    @reboot
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    At the end of the Nano text, there is a line in white that shows when crontab jobs occur.
+
+  ```bash
+  # 
+  # m h  dom mon dow   command
+  @reboot /var/opt/processes.sh
+  ```
+  </details>
+
+---
+
+# Task 7 - Maintaining Your System: Package Management
+
+## Introducing Packages & Software Repos
+
+When developers wish to submit software to the community, they will submit it to an "apt" repository. If approved, their programs and tools will be released into the wild. Two of the most redeeming features of Linux shine to light here: User accessibility and the merit of open source tools.
+
+When using the _ls_ command on a Ubuntu 20.04 Linux machine, these files serve as the gateway/registry.
+
+![apt1](https://github.com/djiotua/tryhackme/assets/134016731/949c403d-d412-4994-97e5-5be4adcd720d)
+
+![apt2](https://github.com/djiotua/tryhackme/assets/134016731/b20c9e8f-86af-4ffb-80e1-8823ba176d5d)
+
+Whilst Operating System vendors will maintain their own repositories, you can also add community repositories to your list! This allows you to extend the capabilities of your OS. Additional repositories can be added by using the _add-apt-repository_ command or by listing another provider! For example, some vendors will have a repository that is closer to their geographical location.
+
+## Managing Your Repositories (Adding and Removing)
+
+Normally we use the apt command to install software onto our Ubuntu system. The _apt_ command is a part of the package management software also named apt. Apt contains a whole suite of tools that allows us to manage the packages and sources of our software, and to install or remove software at the same time.
+
+One method of adding repositories is to use the _add-apt-repository_ command we illustrated above, but we're going to walk through adding and removing a repository manually. Whilst you can install software through the use of package installers such as _dpkg_, the benefits of apt means that whenever we update our system -- the repository that contains the pieces of software that we add also gets checked for updates. 
+
+In this example, we're going to add the text editor Sublime Text to our Ubuntu machine as a repository as it is not a part of the default Ubuntu repositories. When adding software, the integrity of what we download is guaranteed by the use of what is called GPG (Gnu Privacy Guard) keys. These keys are essentially a safety check from the developers saying, "here's our software". If the keys do not match up to what your system trusts and what the developers used, then the software will not be downloaded.
+
+So, to start, we need to add the GPG key for the developers of Sublime Text 3. (Note that TryHackMe instances do not have internet access and so we're not expecting you to add this to the machine that you deploy, as it would fail.)
+
+1. Let's download the GPG key and use apt-key to trust it.
+
+  
