@@ -16,7 +16,7 @@ Note that with my answers and explanations, it is recommended to look at my expl
 - [Linux Fundamentals Part 3](https://tryhackme.com/room/linuxfundamentalspart3) ([writeup](linuxfundpt3.md))
 - [What is Networking?](https://tryhackme.com/room/whatisnetworking) ([writeup](networking.md))
 - [Pentesting Fundamentals?](https://tryhackme.com/room/pentestingfundamentals) ([writeup](pentestfund.md))
-- Principles of Security (writeup)
+- [Principles of Security](https://tryhackme.com/room/principlesofsecurity) ([writeup](principlesofsec.md))
 - Burp Suite: The Basics (writeup)
 - Intro to LAN (writeup)
 - Windows Fundamentals 1 (writeup)
