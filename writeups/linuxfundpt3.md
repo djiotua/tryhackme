@@ -612,4 +612,122 @@ So, to start, we need to add the GPG key for the developers of Sublime Text 3. (
 
 1. Let's download the GPG key and use apt-key to trust it.
 
+  ```bash
+  wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+  ```
+
+2. Now that we have added this key to our trusted list, we can now add Sublime Text 3's repository to our apt sources list. A good practice is to have a separate file for every different community/3rd party repository that we add.
   
+2.1. Let's create a file named _sublime-text.list_ in _/etc/apt/sources.list.d_ and enter the repository information like so.
+
+![sources1](https://github.com/djiotua/tryhackme/assets/134016731/5274d5c8-0a34-455c-b737-b0832bd6fb80)
+
+2.2. And now use Nano or a text editor of your choice to add & save the Sublime Text 3 repository into this newly created file.
+
+![sources2](https://github.com/djiotua/tryhackme/assets/134016731/2a182793-60fb-4f56-a9d5-df4e346d440c)
+
+2.3. After we have added this entry, we need to update apt to recognise this new entry -- this is done using the _apt update_ command.
+
+2.4. Once successfully updated, we can now proceed to install the software that we have trusted and added to apt using _apt install sublime-text_.
+
+Removing packages is as easy as reversing. This process is done by using the _add-apt-repository --remove ppa:PPA_Name/ppa_ command or by manually deleting the file that we previously added to. Once removed, we can just use _apt remove [software-name-here]_ i.e. _apt remove sublime-text_.
+
+---
+
+_1. Since TryHackMe instances do not have an internet connection...this task only requires you to read through the material._
+
+No answer needed.
+
+---
+
+# Task 8 - Maintaining Your System: Logs
+
+We briefly touched upon log files and where they can be found in Linux Fundamentals Part 1. However, let's quickly recap. Located in the _/var/log_ directory, these files and folders contain logging information for applications and services running on your system. The Operating System (OS) has become pretty good at automatically managing these logs in a process that is known as "rotating".
+
+I have highlighted some logs from three services running on a Ubuntu machine:
+
+- An Apache2 web server
+- Logs for the fail2ban service, which is used to monitor attempted brute forces, for example
+- The UFW service which is used as a firewall
+
+![log1](https://github.com/djiotua/tryhackme/assets/134016731/74718d78-95a7-43e4-9d89-e0d60ab72f37)
+
+These services and logs are a great way in monitoring the health of your system and protecting it. Not only that, but the logs for services such as a web server contain information about every single request - allowing developers or administrators to diagnose performance issues or investigate an intruder's activity. For example, the two types of log files below that are of interest:
+
+- Access log
+- Error log
+
+![log2](https://github.com/djiotua/tryhackme/assets/134016731/3ace01e5-e3ab-4427-b643-b3238f240445)
+
+There are, of course, logs that store information about how the OS is running itself and actions that are performed by users, such as authentication attempts.
+
+----
+
+_1. Look for the apache2 logs on the deployable Linux machine._
+
+  Hint: Located in _/var/log/apache2_.
+
+No answer needed.
+
+_2. What is the IP address of the user who visited the site?_
+
+  <details>
+    <summary>Answer</summary>
+
+    10.9.232.111
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    I "cd"ed to /var/log/apache2, then used "ls" to see the contents. I then used "cat" on access.log.1 (in green). The contents in white require admin privileges.
+
+  ```bash
+  tryhackme@linux3:~$ cd /var/log/apache2
+  tryhackme@linux3:/var/log/apache2$ ls
+  access.log    error.log    error.log.2.gz
+  access.log.1  error.log.1  other_vhosts_access.log
+  tryhackme@linux3:/var/log/apache2$ cat access.log.1
+  10.9.232.111 - - [04/May/2021:18:18:16 +0000] "GET /catsanddogs.jpg HTTP/1.1" 200 51395 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+  ```
+  </details>
+
+_3. What file did they access?_
+
+  <details>
+    <summary>Answer</summary>
+
+    catsanddogs.jpg
+  </details>
+
+---
+
+# Task 9 - Conclusions & Summaries
+
+Welcome to the end of the Linux Fundamentals module. Your familiarity with Linux will improve as you get to interact with it over time. Linux has the potential to do very powerful things with relative ease (as you have hopefully discovered throughout this module).
+
+To recap, this room introduced you to the following topics:
+
+- Using terminal text editors
+- General utilities such as downloading and serving contents using a python webserver
+- A look into processes
+- Maintaining & automating your system by the use of crontabs, package management, and reviewing logs
+  
+Continue your learning in some other TryHackMe rooms that are dedicated to Linux tools or utilities:
+
+- Bash Scripting - [https://tryhackme.com/room/bashscripting](https://tryhackme.com/room/bashscripting)
+- Regular Expressions - [https://tryhackme.com/room/catregex](https://tryhackme.com/room/catregex)
+  
+---
+
+_1. Terminate the machine deployed in this room from task 2._
+
+No answer needed.
+
+_2. Continue your learning in other Linux-dedicated rooms._
+
+No answer needed.
+
+---
+
+END OF ROOM
