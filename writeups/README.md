@@ -17,7 +17,7 @@ Note that with my answers and explanations, it is recommended to look at my expl
 - [What is Networking?](https://tryhackme.com/room/whatisnetworking) ([writeup](networking.md))
 - [Pentesting Fundamentals?](https://tryhackme.com/room/pentestingfundamentals) ([writeup](pentestfund.md))
 - [Principles of Security](https://tryhackme.com/room/principlesofsecurity) ([writeup](principlesofsec.md))
-- Burp Suite: The Basics (writeup)
+- [Burp Suite: The Basics](https://tryhackme.com/room/burpsuitebasics) ([writeup](burpsbasics.md))
 - Burp Suite: Repeater (writeup)
 - Burp Suite: Intruder (writeup)
 - Burp Suite: Other Modules (writeup)
