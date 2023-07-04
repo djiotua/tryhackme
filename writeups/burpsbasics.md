@@ -539,3 +539,101 @@ _1. Read through the options in the right-click menu. There is one particularly 
 
 ![Burpsbasics 10](https://github.com/djiotua/tryhackme/assets/134016731/6c46bfe5-a69d-4e63-9423-449ae9d293a8)
   </details>
+
+_2. [Bonus Question -- Optional] Try installing FoxyProxy standard and have a look at the pattern matching features._
+
+No answer needed.
+
+---
+
+# Task 10 - Proxying HTTPS
+
+_Note: The AttackBox is already configured to solve the problem posed in this task. If you are using the AttackBox and don't wish to read through the information here, you can skip to the next task._
+
+Great, so we can intercept HTTP traffic -- what's next?
+
+Unfortunately, there's a problem. What happens if we navigate to a site with TLS enabled? For example, _https://google.com/_.
+
+![8b4b43cac91cd9a80622b953598d05eb](https://github.com/djiotua/tryhackme/assets/134016731/ad7946e5-4a20-48fd-b69e-a9d6a2a46300)
+
+We get an error.
+
+Specifically, Firefox is telling us that the Portswigger Certificate Authority (CA) isn't authorised to secure the connection.
+
+Fortunately, Burp offers us an easy way around this. We need to get Firefox to trust connections secured by Portswigger certs, so we will manually add the CA certificate to our list of trusted certificate authorities.
+
+First, with the proxy activated head to _http://burp/cert_; this will download a file called _cacert.der_ -- save it somewhere on your machine.
+
+Next, type _about:preferences_ into your Firefox search bar and press enter; this takes us to the FireFox settings page. Search the page for "certificates" and we find the option to "_View Certificates_":
+
+![a9de0495b2ac6738520c8f9946afdecb](https://github.com/djiotua/tryhackme/assets/134016731/2dab1f93-7f24-4111-91ab-3be764238d48)
+
+Clicking the "View Certificates" button allows us to see all of our trusted CA certificates. We can register a new certificate for Portswigger by pressing "_Import_" and selecting the file that we just downloaded.
+
+In the menu that pops up, select "_Trust this CA to identify websites_", then click OK.
+
+![23e5cb317d00c1a5e64def1d46fa9301](https://github.com/djiotua/tryhackme/assets/134016731/fd48651e-df27-4768-9679-b093a4fab6a4)
+
+We should now be free to visit any TLS enabled sites that we wish!
+
+The following video shows the full import process.
+
+![fb2a8717ae887eda024a7791d83cefaf](https://github.com/djiotua/tryhackme/assets/134016731/ddbbaa9d-9dd6-4206-813a-a1b88e1d8780)
+
+---
+
+_1. If you are not using the AttackBox, configure Firefox (or your browser of choice) to accept the Portswigger CA certificate for TLS communication through the Burp Proxy._
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    The machine has already gone through the process of importing the Portswigger CA certificate, but you can be able to try this process yourself, using the walkthrough.
+  </details>
+
+---
+
+# Task 11 - The Burp Suite Browser
+
+If the last few tasks seemed overly complex, rest assured, this topic will be a lot simpler.
+
+In addition to giving us the option to modify our regular web browser to work with the proxy, Burp Suite also includes a built-in Chromium browser that is pre-configured to use the proxy without any of the modifications we just had to do.
+
+Whilst this may seem ideal, it is not as commonly used as the process detailed in the previous few tasks. People tend to stick with their own browser as it gives them a lot more customisability; however, both are perfectly valid choices.
+
+We can start the Burp Browser with the "_Open Browser_" button in the proxy tab.
+
+![61ee07fd18e8bac9ec6a566c25a3e814](https://github.com/djiotua/tryhackme/assets/134016731/45255d23-9703-4d77-8431-997edd319138)
+
+A Chromium window will now pop up. Any requests we make in this will go through the proxy.
+
+_Note: There are many settings to do with the Burp Browser in the Project options and User options tabs -- make sure to go look at them!_
+
+If we are running on Linux as the root user (as we are with the AttackBox), Burp Suite is unable to create a sandbox environment to start the Burp Browser in, causing it to throw an error and die.
+
+![4b2aa73df84e146040d49cca1ba5dbfe](https://github.com/djiotua/tryhackme/assets/134016731/a22a4070-82c9-45cd-bb3d-65969019f62b)
+
+There are two simple solutions to this:
+
+- The smart option: We could create a new user and run Burp Suite under a low privilege account.
+- The easy option: We could go to _Project options -> Misc -> Embedded Browser_ and check the _Allow the embedded browser to run without a sandbox_ option. Checking this option will allow the browser to start, but be aware that it is disabled by default for security reasons: if we get compromised using the browser, then an attacker will have access to our entire machine. On the training environment of the AttackBox this is unlikely (and isn't a huge issue even if it _does_ happen), but keep it in mind if you try this on a local installation of Burp Suite.
+  
+Be aware that you will need to do this if using the embedded browser on the AttackBox.
+
+---
+
+_1. Using the in-built browser, make a request to http://10.10.218.45/ and capture it in the proxy._
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    As the root user on Linux (including the AttackBox), we cannot be able to "Open Browser", which generates an error message. But it may work as anyone other than the root user.
+  </details>
+
+---
+
+# Task 12 - Scoping and Targeting
+
