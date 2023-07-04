@@ -285,7 +285,7 @@ No answer needed.
 ![Burpsbasics 2](https://github.com/djiotua/tryhackme/assets/134016731/ab12c013-d7f6-4428-b3e9-f62ff7b062f5)
   </details>
 
-_2. In which category can you find reference to a "Cookie jar"?_
+_2. In which category can you find reference to a "Cookie Jar"?_
 
   <details>
     <summary>Answer</summary>
@@ -623,7 +623,7 @@ Be aware that you will need to do this if using the embedded browser on the Atta
 
 ---
 
-_1. Using the in-built browser, make a request to http://10.10.218.45/ and capture it in the proxy._
+_1. Using the in-built browser, make a request to http://MACHINE_IP/ and capture it in the proxy._
 
 No answer needed.
 
