@@ -21,7 +21,7 @@ Note that with my answers and explanations, it is recommended to look at my expl
 - Burp Suite: Repeater (writeup)
 - Burp Suite: Intruder (writeup)
 - Burp Suite: Other Modules (writeup)
-- Intro to LAN (writeup)
+- [Intro to LAN](https://tryhackme.com/room/introtolan) ([writeup](introtolan.md))
 - Windows Fundamentals 1 (writeup)
 - Windows Fundamentals 2 (writeup)
 - Windows Fundamentals 3 (writeup)
