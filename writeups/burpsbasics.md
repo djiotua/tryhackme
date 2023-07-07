@@ -630,10 +630,197 @@ No answer needed.
   <details>
     <summary>Explanation</summary>
 
-    As the root user on Linux (including the AttackBox), we cannot be able to "Open Browser", which generates an error message. But it may work as anyone other than the root user.
+    As the root user on Linux (including the AttackBox), we cannot be able to "Open Browser", which generates an error message. But we can bypass this by doing "the easy option", as explained in the walkthrough.
+
+![Burpsbasics 11](https://github.com/djiotua/tryhackme/assets/134016731/3b5d70cb-0b2e-4858-8a0c-c024b84f9802)
+
+    After this, go to "Proxy" -> "Intercept", then "Open Browser", which should open up a built-in Chromium browser. Then type in the machine address, which should be captured by Burp Suite once entered.
   </details>
 
 ---
 
 # Task 12 - Scoping and Targeting
 
+Finally, we come to one of the most important parts of using the Burp Proxy: Scoping.
+
+It can get extremely tedious having Burp capturing all of our traffic. When it logs everything (including traffic to sites we aren't targeting), it muddies up logs we may later wish to send to clients. In short, allowing Burp to capture _everything_ can quickly become a massive pain.
+
+What's the solution? Scoping.
+
+Setting a scope for the project allows us to define what gets proxied and logged. We can restrict Burp Suite to _only_ target the web application(s) that we want to test. The easiest way to do this is by switching over to the "_Target_" tab, right-clicking our target from our list on the left, then choosing "_Add To Scope_". Burp will then ask us whether we want to stop logging anything which isn't in scope -- most of the time we want to choose "_yes_" here.
+
+![7e11c5dec4dba4336927aa7561e5c793](https://github.com/djiotua/tryhackme/assets/134016731/ed8ba619-f627-43d4-806d-f73e72625f41)
+
+We can now check our scope by switching to the "_Scope_" sub-tab (as shown in the GIF above).
+
+The Scope Settings window allows us to control what we are targeting by either _Including_ or _Excluding_ domains / IPs. This is a very powerful section, so it's well worth taking the time to get accustomed to using it.
+
+We just chose to disable _logging_ for out of scope traffic, but the proxy will still be intercepting everything. To turn this off, we need to go into the Proxy Options sub-tab and select "_And_ _URL_ _Is in target scope_" from the Intercept Client Requests section.
+
+![6d168893a8d54293c12c3cb75c3c00ff](https://github.com/djiotua/tryhackme/assets/134016731/082dec60-0d2e-4cbe-9c86-14a5938e0b62)
+
+With this option selected, the proxy will completely ignore anything that isn't in the scope, vastly cleaning up the traffic coming through Burp.
+
+---
+
+_1. Add http://MACHINE_IP/ to your scope and change the Proxy settings to only intercept traffic to in-scope targets. See the difference between the amount of traffic getting caught by the proxy before and after limiting the scope._
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    Just follow the walkthrough, still using the built-in browser.
+  </details>
+
+---
+
+# Task 13 - Site Map and Issue Definitions
+
+Control of the scope may be the most useful aspect of the Target tab, but it's by no means the only use for this section of Burp.
+
+There are three sub-tabs under _Target_:
+
+- Site map allows us to map out the apps we are targeting in a tree structure. Every page that we visit will show up here, allowing us to automatically generate a site map for the target simply by browsing around the web app. Burp Pro would also allow us to spider the targets automatically (i.e. look through every page for links and use them to map out as much of the site as-is publicly accessible using the links between pages); however, with Burp Community, we can still use this to accumulate data whilst we perform our initial enumeration steps. The Site map can be especially useful if we want to map out an API, as whenever we visit a page, any API endpoints that the page retrieves data from whilst loading will show up here.
+- Scope Settings: We have already seen the Scope Settings window — it allows us to control Burp's target scope for the project.
+- Issue Definitions: Whilst we don't have access to the Burp Suite vulnerability scanner in Burp Community, we do still have access to a list of all the vulnerabilities it looks for. The Issue Definitions section gives us a huge list of web vulnerabilities (complete with descriptions and references) which we can draw from should we need citations for a report or help describing a vulnerability.
+
+---
+
+_1. Take a look around the site on (http://MACHINE_IP/) -- we will be using this a lot throughout the module. Visit every page linked to from the homepage, then check your sitemap -- one endpoint should stand out as being very unusual! Visit this in your browser (or use the "Response" section of the site map entry for that endpoint). What is the flag you receive?_
+
+  Hint: You are looking for a suspicious page with a name made up of a series of random letters and numbers.
+
+  <details>
+    <summary>Answer</summary>
+
+    THM{NmNlZTliNGE1MWU1ZTQzMzgzNmFiNWVk}
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+    Using the "Site map" in "Target", I visited every known page, until I found a page with random letters and numbers.
+
+![Burpsbasics 12](https://github.com/djiotua/tryhackme/assets/134016731/b2c8d394-f690-47a1-ae37-50a902062eb3)
+    
+    There I copied the URL, and pasted it onto the address bar, where I found the flag.
+    
+![Burpsbasics 13](https://github.com/djiotua/tryhackme/assets/134016731/d14f4d79-5100-44f5-8794-bc23efd954f5)
+  </details>
+
+_2. Look through the Issue Definitions list. What is the typical severity of a Vulnerable JavaScript dependency?_
+
+  <details>
+    <summary>Answer</summary>
+
+    Low
+  </details>
+
+  <details>
+    <summary>Explanation</summary>
+
+![Burpsbasics 14](https://github.com/djiotua/tryhackme/assets/134016731/6688b2ca-2708-4b66-985b-5542c15f5dcf)
+  </details>
+
+---
+
+# Practical
+
+# Task 14 - Example Attack
+
+Having looked at how to set up and configure our proxy, let's go through a simplified real-world example.
+
+We will start by taking a look at the support form at _http://MACHINE_IP/ticket/_:
+
+![5b50c536c72d943a3aa5665bcf8858a5](https://github.com/djiotua/tryhackme/assets/134016731/26f3ea29-39dd-406e-a165-0c963f78cfc1)
+
+In a real-world web app pentest, we would test this for a variety of things: one of which would be Cross-Site Scripting (or XSS). If you have not yet encountered XSS, it can be thought of as injecting a client-side script (usually in Javascript) into a webpage in such a way that it executes. There are various kinds of XSS -- the type that we are using here is referred to as "_Reflected_" XSS as it only affects the person making the web request.
+
+Let's begin.
+
+---
+
+_1. Try typing: "<script>alert("Succ3ssful XSS")</script>", into the "Contact Email" field. You should find that there is a client-side filter in place which prevents you from adding any special characters that aren't allowed in email addresses:_
+
+![04acd78be44400cf105c7d41b104b7fe](https://github.com/djiotua/tryhackme/assets/134016731/d6c1ccc6-bf4d-4fb8-9458-eab52dfaacc5)
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    As I type any special characters (not letters or numbers), they immediately disappear, meaning there is a client-side filter in effect.
+  </details>
+
+_2. Fortunately for us, client-side filters are absurdly easy to bypass. There are a variety of ways we could disable the script or just prevent it from loading in the first place. Let's focus on simply bypassing the filter for now. First, make sure that your Burp Proxy is active and that the intercept is on._
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    By turning the Burp Proxy on in Firefox, then ensuring that "Intercept is on" in Burp Suite, we are ready to intercept.
+  </details>
+
+_3. Now, enter some legitimate data into the support form. For example: "pentester@example.thm" as an email address, and "Test Attack" as a query. Submit the form -- the request should be intercepted by the proxy._
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    As I typed in the email address and query from the walkthrough, Burp Suite intercepts this request.
+
+![Burpsbasics 15](https://github.com/djiotua/tryhackme/assets/134016731/9058e0d0-2758-47bd-b142-5d8b0ab87318)
+  </details>
+
+_4. With the request captured in the proxy, we can now change the email field to be our very simple payload from above: "<script>alert("Succ3ssful XSS")</script>". After pasting in the payload, we need to select it, then URL encode it with the Ctrl + U shortcut to make it safe to send. This process is shown in the GIF below._
+
+![58c5bf5382cdee55ab12e0752d819ebe](https://github.com/djiotua/tryhackme/assets/134016731/cb30d028-7503-4369-a3e5-04f695254e09)
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+    
+    I forwarded until I saw the first POST request which has both "email" and "content". From there, I followed the GIF provided, which is typing in the script, then URL encoding that script, before forwarding.
+  </details>
+
+_5. Finally, press the "Forward" button to send the request. You should find that you get an alert box from the site indicating a successful XSS attack!_
+
+![0ee12f5040b4c2898a71c1300a76f03f](https://github.com/djiotua/tryhackme/assets/134016731/3d6a0f35-8e60-4abe-b8ce-66c401f416a9)
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    I forwarded until a red flash appeared near the Firefox icon (right-hand side). From there, I got an alert saying "Succ3ssful XSS" from the script I typed in, which is sucessful!
+  </details>
+
+_6. Congratulations, you bypassed the filter! Don't expect it to be quite so easy in real life, but this should hopefully give you an idea of the kind of situation in which Burp Proxy can be useful._
+
+No answer needed.
+
+---
+
+# Conclusion
+
+# Task 15 - Room Conclusion
+
+We have now reached the end of the Burp Basics room.
+
+This room has hopefully given you a good grasp of the Burp Suite interface and configuration options, as well as giving you a working knowledge of the Burp Proxy.
+
+You are advised to experiment with these foundations until you are completely comfortable with them. Burp Suite is an invaluable tool in a web or mobile application pentester's arsenal. We will be building on these skills in the next room of the module covering [Burp Suite Repeater](https://tryhackme.com/room/burpsuiterepeater).
+
+---
+
+_1. I understand the fundamentals of using Burp Suite!_
+
+No answer needed.
+
+---
+
+END OF ROOM
