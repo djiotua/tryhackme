@@ -23,7 +23,7 @@ Note that with my answers and explanations, it is recommended to look at my expl
 - Burp Suite: Other Modules (writeup)
 - [Intro to LAN](https://tryhackme.com/room/introtolan) ([writeup](introtolan.md))
 - [Windows Fundamentals 1](https://tryhackme.com/room/windowsfundamentals1xbx) ([writeup](winfundpt1.md))
-- Windows Fundamentals 2 (writeup)
+- [Windows Fundamentals 2](https://tryhackme.com/room/windowsfundamentals2x0x) ([writeup](winfundpt2.md))
 - Windows Fundamentals 3 (writeup)
 - OSI Model (writeup)
 - Extending Your Network (writeup)
