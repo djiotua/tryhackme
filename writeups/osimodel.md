@@ -161,7 +161,7 @@ Not only this, but TCP incorporates error checking into its design. Error checki
 
 Let's summarise the advantages and disadvantages of TCP in the table below.
 
-| _Advantages of TCP_ | _Disadvantages of TCP_ |
+| Advantages of TCP | Disadvantages of TCP |
 | --- | --- |
 | Guarantees the accuracy of data. | Requires a reliable connection between the two devices. If one small chunk of data is not received, then the entire chunk of data cannot be used. |
 | Capable of synchronising two devices to prevent each other from being flooded with data. | A slow connection can bottleneck another device as the connection will be reserved on the receiving computer the whole time. |
