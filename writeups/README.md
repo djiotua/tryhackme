@@ -29,6 +29,6 @@ Note: Rooms in _italics_ require subscription.
 - [Windows Fundamentals 3](https://tryhackme.com/room/windowsfundamentals3xzx) ([writeup](winfundpt3.md))
 - [_OSI Model_](https://tryhackme.com/room/osimodelzi) ([writeup](osimodel.md))
 - [_Extending Your Network_](https://tryhackme.com/room/extendingyournetwork) ([writeup](extendnet.md))
-- Careers in Cyber (writeup)
+- [_Careers in Cyber_](https://tryhackme.com/room/careersincyber) ([writeup](cybercareers.md))
 - Packets & Frames (writeup)
 - History of Malware (writeup)
