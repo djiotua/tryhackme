@@ -69,9 +69,13 @@ However, to get started, simply press the green "_Start Machine_" button on the 
 
 Once deployed, a card will appear at the top of the room.
 
+![deploy-card](https://github.com/djiotua/tryhackme/assets/134016731/ef9d2295-d2f3-4bda-8c97-942ccf87791a)
+
 This contains all of the information for the machine deployed in the room including the IP address and expiry timer - along with buttons to manage the machine. Remember to "_Terminate_" a machine once you are done with the room. More information on this can be found in the [tutorial](https://tryhackme.com/room/tutorial) room.
 
 For now, press "_Start Machine_" where you will be able to interact with your own Linux machine within your browser whilst following along with this room.
+
+![split-screen](https://github.com/djiotua/tryhackme/assets/134016731/08a9d55f-b691-4e70-a7f2-412923bb44a3)
 
 ---
 
@@ -519,7 +523,7 @@ _1. If we wanted to run a command in the background, what operator would we want
 
 _2. If I wanted to replace the contents of a file named "passwords" with the word "password123", what would my command be?_
 
-  Hint: echo [content] > [filename]
+  Hint: _echo [content] > [filename]_
 
   <details>
     <summary>Answer</summary>
@@ -541,7 +545,7 @@ _2. If I wanted to replace the contents of a file named "passwords" with the wor
 
 _3. Now if I wanted to add "tryhackme" to this file named "passwords" but also keep "passwords123", what would my command be?_
 
-  Hint: echo [content] >> [filename]
+  Hint: _echo [content] >> [filename]_
 
   <details>
     <summary>Answer</summary>

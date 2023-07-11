@@ -8,7 +8,7 @@ TryHackMe also features more than 600 rooms, mainly consisting of capture-the-fl
 
 As you progress in learning using TryHackMe, as well as other alternatives, you can definitely gain a lot of knowledge and expertise, over time, that can potentially be useful towards real-life environments.
 
-This repository contains all the rooms, along with my writeups, for which there are different links to if interested.
+This repository contains all the rooms, along with my [writeups](/writeups), for which there are different links to if interested.
 
 ---
 
