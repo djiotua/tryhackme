@@ -30,5 +30,5 @@ Note: Rooms in _italics_ require subscription.
 - [_OSI Model_](https://tryhackme.com/room/osimodelzi) ([writeup](osimodel.md))
 - [_Extending Your Network_](https://tryhackme.com/room/extendingyournetwork) ([writeup](extendnet.md))
 - [_Careers in Cyber_](https://tryhackme.com/room/careersincyber) ([writeup](cybercareers.md))
-- Packets & Frames (writeup)
+- [_Packets & Frames_](https://tryhackme.com/room/packetsframes) ([writeup](packetsframes.md))
 - History of Malware (writeup)
