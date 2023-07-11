@@ -31,4 +31,4 @@ Note: Rooms in _italics_ require subscription.
 - [_Extending Your Network_](https://tryhackme.com/room/extendingyournetwork) ([writeup](extendnet.md))
 - [_Careers in Cyber_](https://tryhackme.com/room/careersincyber) ([writeup](cybercareers.md))
 - [_Packets & Frames_](https://tryhackme.com/room/packetsframes) ([writeup](packetsframes.md))
-- History of Malware (writeup)
+- [History of Malware](https://tryhackme.com/room/historyofmalware) ([writeup](historyofmw.md))
