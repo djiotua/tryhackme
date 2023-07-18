@@ -33,7 +33,7 @@ Note: Rooms in _italics_ require subscription.
 - [_Careers in Cyber_](https://tryhackme.com/room/careersincyber) ([writeup](cybercareers.md))
 - [_Packets & Frames_](https://tryhackme.com/room/packetsframes) ([writeup](packetsframes.md))
 - [History of Malware](https://tryhackme.com/room/historyofmalware) ([writeup](historyofmw.md))
-- Common Attacks (writeup)
+- [Common Attacks](https://tryhackme.com/room/commonattacks) ([writeup](commonatts.md))
 - Security Awareness (writeup)
 - Sudo Security Bypass (writeup)
 - Python Basics (writeup)
