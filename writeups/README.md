@@ -34,7 +34,7 @@ Note: Rooms in _italics_ require subscription.
 - [_Packets & Frames_](https://tryhackme.com/room/packetsframes) ([writeup](packetsframes.md))
 - [History of Malware](https://tryhackme.com/room/historyofmalware) ([writeup](historyofmw.md))
 - [Common Attacks](https://tryhackme.com/room/commonattacks) ([writeup](commonatts.md))
-- Security Awareness (writeup)
+- [Security Awareness](https://tryhackme.com/room/securityawarenessintro) ([writeup](secawareness.md))
 - Sudo Security Bypass (writeup)
 - Python Basics (writeup)
 - Intro to Containerisation (writeup)
