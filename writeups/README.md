@@ -36,7 +36,7 @@ Note: Rooms in _italics_ require subscription.
 - [Common Attacks](https://tryhackme.com/room/commonattacks) ([writeup](commonatts.md))
 - [Security Awareness](https://tryhackme.com/room/securityawarenessintro) ([writeup](secawareness.md))
 - Sudo Security Bypass (writeup)
-- Python Basics (writeup)
+- [Python Basics](https://tryhackme.com/room/pythonbasics) ([writeup](pybasics.md))
 - Intro to Containerisation (writeup)
 - Pwnkit: CVE-2021-4034 (writeup)
 - Dirty Pipe: CVE-2022-0847 (writeup)
