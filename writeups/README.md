@@ -48,5 +48,5 @@ Note: Rooms in _italics_ require subscription.
 - CVE-2021-41773/42013 (writeup)
 - REmux The Tmux (writeup)
 - Bypass Disable Functions (writeup)
-- Intro to Pipeline Automation (writeup)
+- [Intro to Pipeline Automation](https://tryhackme.com/room/introtopipelineautomation) ([writeup](introtopipelineauto.md))
 - AWS: Cloud 101 (writeup)
