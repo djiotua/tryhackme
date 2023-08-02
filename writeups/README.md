@@ -50,3 +50,19 @@ Note: Rooms in _italics_ require subscription.
 - Bypass Disable Functions (writeup)
 - [Intro to Pipeline Automation](https://tryhackme.com/room/introtopipelineautomation) ([writeup](introtopipelineauto.md))
 - AWS: Cloud 101 (writeup)
+
+---
+
+# THM Rooms - Easy difficulty
+
+- Nmap (writeup)
+- Learning Cyber Security (writeup)
+- Introductory Networking (writeup)
+- Advent of Cyber 2022 (writeup)
+- Tutorial (writeup)
+- Advent of Cyber 3 (2021) (writeup)
+- Introductory Researching (writeup)
+- Vulnversity (writeup)
+- Starting Out In Cyber Sec (writeup)
+- OWASP Top 10 (writeup)
+- 
