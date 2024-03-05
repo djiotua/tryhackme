@@ -413,7 +413,7 @@ _2. If we were to launch a process where the previous ID was "300", what would t
   <details>
     <summary>Explanation</summary>
 
-  Since process IDs go by sequence, if the process ID was 300 and there are no new processes launched since 300, then the next available ID is 301. But depending on other processes, the process ID may be higher than 301.
+    Since process IDs go by sequence, if the process ID was 300 and there are no new processes launched since 300, then the next available ID is 301. But depending on other processes, the process ID may be higher than 301.
   </details>
 
 _3. If we wanted to cleanly kill a process, what signal would we send it?_
