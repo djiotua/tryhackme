@@ -548,7 +548,7 @@ No answer needed.
   tryhackme@linux3:~$ crontab -e
   ```
 
-    Only "crontab" is accepted. Ohter spellings would cause errors, assuming you have not installed the program. Once run, you are taken to the Nano text editor program.
+    Only "crontab" is accepted. Other spellings would cause errors, assuming you have not installed the program. Once run, you are taken to the Nano text editor program.
     
   ```bash
       GNU nano 4.8              /tmp/crontab.dN4JLi/crontab                         
