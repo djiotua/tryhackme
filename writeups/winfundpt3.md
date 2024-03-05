@@ -83,7 +83,7 @@ _1. There were two definition updates installed in the attached VM. On what date
   <details>
     <summary>Explanation</summary>
 
-    Using Windows Update, I went to "View update history", followed by "Definition Updates", to which they are two that were installed.
+    Using Windows Update, I went to "View update history", followed by "Definition Updates", to which there are two that were installed.
   </details>
 
 ---
