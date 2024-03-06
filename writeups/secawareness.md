@@ -82,7 +82,7 @@ _2. What data was leaked from Playstation being hacked?_
   <details>
     <summary>Answer</summary>
 
-    names, addresses, e-mail, birth dates
+    Names, addresses, e-mail, birth dates
   </details>
 
 ---
