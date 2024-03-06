@@ -19,7 +19,7 @@ Note: Rooms in _italics_ require subscription.
 - [What is Networking?](https://tryhackme.com/room/whatisnetworking) ([writeup](networking.md))
 - [Pentesting Fundamentals](https://tryhackme.com/room/pentestingfundamentals) ([writeup](pentestfund.md))
 - [Principles of Security](https://tryhackme.com/room/principlesofsecurity) ([writeup](principlesofsec.md))
-- [Burp Suite: The Basics](https://tryhackme.com/room/burpsuitebasics) ([writeup](burpsbasics.md))
+- [Burp Suite: The Basics](https://tryhackme.com/room/burpsuitebasics) (writeup)
 - Burp Suite: Repeater (writeup)
 - Burp Suite: Intruder (writeup)
 - Burp Suite: Extender (writeup)
