@@ -326,7 +326,7 @@ _3. In shipping.py, on line 12 (when using the Code Editor's Hint), change the c
   <details>
     <summary>Answer</summary>
 
-    THM{IF_STATEMENT_SHOPPING}
+    THM{MY_FIRST_APP}
   </details>
 
   <details>
