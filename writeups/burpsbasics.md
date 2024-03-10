@@ -341,3 +341,91 @@ No answer needed.
 ---
 
 # Task 9 - Connecting through the Proxy (FoxyProxy)
+
+Start the machine by clicking the _Start Machine_ button at the upper right corner of this task.
+
+To use the Burp Suite Proxy, we need to configure our local web browser to redirect traffic through Burp Suite. In this task, we will focus on configuring the proxy using the FoxyProxy extension in Firefox.
+
+Please note that the instructions provided are specific to Firefox. If you are using a different browser, you may need to find alternative methods or use the TryHackMe AttackBox.
+
+Here are the steps to configure the Burp Suite Proxy with FoxyProxy:
+
+1. _Install FoxyProxy_: Download and install the [FoxyProxy Basic extension](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-basic/).
+
+_Note: FoxyProxy is already installed on the AttackBox._
+
+2. _Access FoxyProxy Options_: Once installed, a button will appear at the top right of the Firefox browser. Click on the FoxyProxy button to access the FoxyProxy options pop-up.
+
+![fee3f150ebb4d9301023188fddc0458a](https://github.com/djiotua/tryhackme/assets/134016731/62c3bb9e-2ad6-4f2b-a11b-70f9d6063ad7)
+
+3. _Create Burp Proxy Configuration_: In the FoxyProxy options pop-up, click the _Options_ button. This will open a new browser tab with the FoxyProxy configurations. Click the _Add_ button to create a new proxy configuration.
+
+![5a73425b5de3395c5db2962b9d613506](https://github.com/djiotua/tryhackme/assets/134016731/1288d3d1-c210-4fa3-b3d9-44f2f93262cb)
+
+4. _Add Proxy Details_: On the "_Add Proxy_" page, fill in the following values:
+
+Title: _Burp_ (or any preferred name)
+Proxy IP: _127.0.0.1_
+Port: _8080_
+
+![b2d6f2b724f123070ca434bf2759df91](https://github.com/djiotua/tryhackme/assets/134016731/9d90b37c-9262-446d-9047-b2c6f6424bfa)
+
+5. _Save Configuration_: Click _Save_ to save the Burp Proxy configuration.
+
+6. _Activate Proxy Configuration_: Click on the FoxyProxy icon at the top-right of the Firefox browser and select the _Burp_ configuration. This will redirect your browser traffic through _127.0.0.1:8080_. Note that Burp Suite must be running for your browser to make requests when this configuration is activated.
+
+![20f5e9db304d164b57c7f7d89fabc63a](https://github.com/djiotua/tryhackme/assets/134016731/ef329603-6c9c-492e-a8b5-34639909f286)
+
+7. _Enable Proxy Intercept in Burp Suite_: Switch to Burp Suite and ensure that Intercept is turned on in the _Proxy_ tab.
+
+![9e0f6f47486737deff0e16c4e066120f](https://github.com/djiotua/tryhackme/assets/134016731/aef27108-b95e-4d37-bd54-a93859f0f24e)
+
+8. _Test the Proxy_: Open Firefox and try accessing a website, such as the homepage for _http://MACHINE_IP/_. Your browser will hang, and the proxy will populate with the HTTP request. Congratulations, you have successfully intercepted your first request!
+
+_Remember the following:_
+
+- When the proxy configuration is active, and the intercept is switched on in Burp Suite, your browser will hang whenever you make a request.
+- Be cautious not to leave the intercept switched on unintentionally, as it can prevent your browser from making any requests.
+- Right-clicking on a request in Burp Suite allows you to perform various actions, such as forwarding, dropping, sending to other tools, or selecting options from the right-click menu.
+
+Take note of these details as you begin using the Burp Suite Proxy.
+
+_Note: Consider closing the other tabs in the AttackBox browser before enabling interception, as you will receive some WebSocket requests instead of request from the target VM._
+
+---
+
+_1. Click me to proceed to the next task._
+
+No answer needed.
+
+---
+
+# Task 10 - Site Map and Issue Definitions
+
+The _Target_ tab in Burp Suite provides more than just control over the scope of our testing. It consists of three sub-tabs:
+
+1. _Site map_: This sub-tab allows us to map out the web applications we are targeting in a tree structure. Every page that we visit while the proxy is active will be displayed on the site map. This feature enables us to automatically generate a site map by simply browsing the web application. In Burp Suite Professional, we can also use the site map to perform automated crawling of the target, exploring links between pages and mapping out as much of the site as possible. Even with Burp Suite Community, we can still utilize the site map to accumulate data during our initial enumeration steps. It is particularly useful for mapping out APIs, as any API endpoints accessed by the web application will be captured in the site map.
+
+2. _Issue definitions_: Although Burp Community does not include the full vulnerability scanning functionality available in Burp Suite Professional, we still have access to a list of all the vulnerabilities that the scanner looks for. The _Issue definitions_ section provides an extensive list of web vulnerabilities, complete with descriptions and references. This resource can be valuable for referencing vulnerabilities in reports or assisting in describing a particular vulnerability that may have been identified during manual testing.
+
+3. _Scope settings_: This setting allows us to control the target scope in Burp Suite. It enables us to include or exclude specific domains/IPs to define the scope of our testing. By managing the scope, we can focus on the web applications we are specifically targeting and avoid capturing unnecessary traffic.
+
+Overall, the _Target_ tab offers features beyond scoping, allowing us to map out web applications, fine-tune our target scope, and access a comprehensive list of web vulnerabilities for reference purposes.
+
+## Challenge
+
+Take a look around the site on _http://MACHINE_IP/_ — we will be using this a lot throughout the module. Visit every other page that is linked on the homepage, then check your sitemap — one endpoint should stand out as being very unusual!
+
+Visit this in your browser (or use the "Response" section of the site map entry for that endpoint).
+
+---
+
+_1. What is the flag you receive after visiting the unusual endpoint?_
+
+  Hint: You are looking for a suspicious page with a name made up of a series of random letters and numbers.
+
+  <details>
+    <summary>Answer</summary>
+
+    
+  </details>
