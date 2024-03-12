@@ -429,3 +429,74 @@ _1. What is the flag you receive after visiting the unusual endpoint?_
 
     
   </details>
+
+---
+
+# Task 11 - The Burp Suite Browser
+
+If the previous tasks seemed overly complex, rest assured, this topic will be a lot simpler.
+
+In addition to modifying our regular web browser to work with the proxy, Burp Suite also includes a built-in Chromium browser that is pre-configured to use the proxy without any of the modifications we just had to do.
+
+To start the Burp Browser, click the _Open Browser_ button in the proxy tab. A Chromium window will pop up, and any requests made in this browser will go through the proxy.
+
+![61ee07fd18e8bac9ec6a566c25a3e814](https://github.com/djiotua/tryhackme/assets/134016731/59282d22-3beb-4ad9-a916-8eacec7a06a0)
+
+_Note: There are many settings related to the Burp Browser in the project options and user options settings. Make sure to explore and customise them as needed._
+
+However, if you are running Burp Suite on Linux as the root user (as is the case with the AttackBox), you may encounter an error preventing the Burp Browser from starting due to the inability to create a sandbox environment.
+
+There are two simple solutions to this:
+
+1. _Smart option_: Create a new user and run Burp Suite under a low-privilege account to allow the Burp Browser to run without issues.
+2. _Easy option_: Go to _Settings -> Tools -> Burp's browser_ and check the _Allow Burp's browser to run without a sandbox_ option. Enabling this option will allow the browser to start without a sandbox. However, please be aware that this option is disabled by default for security reasons. If you choose to enable it, exercise caution, as compromising the browser could grant an attacker access to your entire machine. In the training environment of the AttackBox, this is unlikely to be a significant issue, but use it responsibly.
+
+---
+
+_1. Click me to proceed to the next task._
+
+No answer needed.
+
+---
+
+# Task 12 - Scoping and Targeting
+
+Finally, we come to one of the most important aspects of using the Burp Proxy: _Scoping_.
+
+Capturing and logging all of the traffic can quickly become overwhelming and inconvenient, especially when we only want to focus on specific web applications. This is where scoping comes in.
+
+By setting a scope for the project, we can define what gets proxied and logged in Burp Suite. We can restrict Burp Suite to target only the specific web application(s) we want to test. The easiest way to do this is by switching to the _Target_ tab, right-clicking on our target from the list on the left, and selecting _Add To Scope_. Burp will then prompt us to choose whether we want to stop logging anything that is not in scope, and in most cases, we want to select _Yes_.
+
+![5db0a2b0597830ae32aaaf9b80d73187](https://github.com/djiotua/tryhackme/assets/134016731/8eb6e90b-9a5a-489c-a2d3-d2dc95d7dc36)
+
+To check our scope, we can switch to the _Scope settings_ sub-tab within the _Target_ tab.
+
+The Scope settings window allows us to control our target scope by including or excluding domains/IPs. This section is powerful and worth spending time getting familiar with.
+
+However, even if we disabled logging for out-of-scope traffic, the proxy will still intercept everything. To prevent this, we need to go to the _Proxy settings_ sub-tab and select "_And_" "_URL_" "_Is in target scope_" from the "_Intercept Client Requests_" section.
+
+![97db105960dfe71e42855461e3ef0de2](https://github.com/djiotua/tryhackme/assets/134016731/f2d8db37-608b-4909-9154-7e1b60557d97)
+
+Enabling this option ensures that the proxy completely ignores any traffic that is not within the defined scope, resulting in a cleaner traffic view in Burp Suite.
+
+---
+
+_1. Add http://MACHINE_IP/ to your scope and change the proxy settings to only intercept traffic to in-scope targets._
+_See the difference between the amount of traffic getting caught by the proxy before and after limiting the scope._
+
+No answer needed.
+
+  <details>
+    <summary>Explanation</summary>
+
+    
+  </details>
+
+# Task 13 - Proxying HTTPS
+
+_Note: The AttackBox is already configured to solve the problem posed in this task. If you use the AttackBox and don't wish to read through the information here, you can skip to the next task._
+
+When intercepting HTTP traffic, we may encounter an issue when navigating to sites with TLS enabled. For example, when accessing a site like _https://google.com/_, we may receive an error indicating that the PortSwigger Certificate Authority (CA) is not authorised to secure the connection. This happens because the browser does not trust the certificate presented by Burp Suite.
+
+![8b4b43cac91cd9a80622b953598d05eb](https://github.com/djiotua/tryhackme/assets/134016731/170738c5-04ce-4263-a62f-d88f7884554c)
+
